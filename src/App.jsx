@@ -2,6 +2,7 @@ import houseLogo from "./assets/house.png";
 import "./App.css";
 import MortgageForm from "./components/MortgageForm";
 import ResultsSummary from "./components/ResultsSummary";
+import "./utils/mortgageCalc.js";
 
 function App() {
   return (
