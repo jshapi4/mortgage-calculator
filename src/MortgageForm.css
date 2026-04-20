@@ -1,0 +1,22 @@
+.form-box {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.form-box label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid blue;
+  border-radius: 5px;
+  background-color: rgb(225, 209, 225);
+  margin: 0 0 10px 0;
+}
+
+.form-box input {
+  width: 200px;
+  padding: 5px;
+}

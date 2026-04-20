@@ -1,33 +1,72 @@
-function ResultsSummary() {
+function ResultsSummary({ results }) {
+  if (!results)
+    return <p>Enter mortgage details and press calculate to see results</p>;
   return (
     <>
-      <h2>Summary of Results</h2>
-      <p>This will be the summary of results</p>
+      <h2>Monthly Breakdown</h2>
       <table>
         <tbody>
           <tr>
-            <th>Item</th>
-            <th>Dollar Amount</th>
+            <td>Monthly Payment (P&I)</td>
+            <td>
+              {parseFloat(results.monthlyPayment).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </td>
           </tr>
           <tr>
-            <td>Monthly Payment</td>
-            <td>$1,000.00</td>
+            <td>Property Taxes</td>
+            <td>
+              {parseFloat(results.monthlyPropertyTax).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </td>
           </tr>
-          <tr>
-            <td>Yearly Payment</td>
-            <td>$12,000.00</td>
-          </tr>
+          {results.monthlyPMI > 0 && (
+            <tr>
+              <td>PMI</td>
+              <td>
+                {parseFloat(results.monthlyPMI).toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      <h2>Totals</h2>
+      <table>
+        <tbody>
           <tr>
             <td>Total Interest Paid</td>
-            <td>$100,000.00</td>
+            <td>
+              {parseFloat(results.totalInterestPaid).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </td>
           </tr>
           <tr>
             <td>Total Amount Paid</td>
-            <td>$300,000.00</td>
+            <td>
+              {parseFloat(results.totalAmountPaid).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </td>
           </tr>
           <tr>
             <td>Total Principal</td>
-            <td>$200,000.00</td>
+            <td>
+              {parseFloat(results.principal).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </td>
           </tr>
         </tbody>
       </table>

@@ -1,60 +1,65 @@
-import { useState } from "react";
-
-function MortgageForm() {
-  const [homePrice, setHomePrice] = useState(200000);
-  const [downPayment, setDownPayment] = useState(20);
-  const [interestRate, setInterestRate] = useState(5.99);
-  const [propertyTax, setPropertyTax] = useState(1.25);
+function MortgageForm({ formData, onInputChange }) {
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(value);
+  };
 
   return (
     <>
-      <h2>Mortgage Form</h2>
-      <label>
-        Home Price
-        <input
-          type="number"
-          name="homePrice"
-          value={homePrice}
-          onChange={(e) => setHomePrice(e.target.value)}
-        />
-      </label>
-      <label>
-        Down Payment
-        <input
-          type="number"
-          name="downPayment"
-          value={downPayment}
-          onChange={(e) => setDownPayment(e.target.value)}
-        />
-      </label>
+      <div className="form-box">
+        <h2>Mortgage Form</h2>
+        <label>
+          Home Price: {formatCurrency(formData.homePrice)}
+          <div>
+            <input
+              type="range"
+              name="homePrice"
+              min="50000"
+              max="1000000"
+              step="5000"
+              value={formData.homePrice}
+              onChange={onInputChange}
+            />
+          </div>
+        </label>
+        <label>
+          Down Payment: {formData.downPayment}% (
+          {formatCurrency((formData.downPayment * formData.homePrice) / 100)})
+          <input
+            type="number"
+            name="downPayment"
+            min="0"
+            max="100"
+            value={formData.downPayment}
+            onChange={onInputChange}
+          />
+        </label>
 
-      <label>
-        Interest Rate
-        <input
-          type="number"
-          name="interestRate"
-          step="0.01"
-          value={interestRate}
-          onChange={(e) => setInterestRate(e.target.value)}
-          onBlur={(e) =>
-            setInterestRate(parseFloat(e.target.value || 0).toFixed(2))
-          }
-        />
-      </label>
-      <label>
-        Property Tax
-        <input
-          type="number"
-          name="propertyTax"
-          step="0.01"
-          value={propertyTax}
-          onChange={(e) => setPropertyTax(e.target.value)}
-          onBlur={(e) =>
-            setPropertyTax(parseFloat(e.target.value || 0).toFixed(2))
-          }
-        />
-      </label>
-      <button>Calculate</button>
+        <label>
+          Interest Rate
+          <input
+            type="number"
+            name="interestRate"
+            step="0.01"
+            min="0"
+            value={formData.interestRate}
+            onChange={onInputChange}
+          />
+        </label>
+        <label>
+          Property Tax
+          <input
+            type="number"
+            name="propertyTax"
+            step="0.01"
+            min="0"
+            value={formData.propertyTax}
+            onChange={onInputChange}
+          />
+        </label>
+      </div>
     </>
   );
 }
