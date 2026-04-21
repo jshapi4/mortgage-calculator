@@ -39,6 +39,11 @@ function App() {
 
   const monthlyPMI = calculatePMI(principal, formData.downPayment);
 
+  const monthlyTotal =
+    parseFloat(monthlyPropertyTax) +
+    parseFloat(monthlyPMI) +
+    parseFloat(monthlyPayment);
+
   const results = {
     monthlyPayment,
     monthlyPropertyTax,
@@ -46,6 +51,7 @@ function App() {
     totalInterestPaid,
     totalAmountPaid,
     principal,
+    monthlyTotal,
   };
 
   const handleInputChange = (e) => {

@@ -1,22 +1,20 @@
 .form-box {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  width: 50%;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--surface);
   padding: 20px;
+  display: grid;
 }
 
 .form-box label {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border: 1px solid blue;
-  border-radius: 5px;
-  background-color: rgb(225, 209, 225);
-  margin: 0 0 10px 0;
+  padding: 5px 10px;
 }
 
 .form-box input {
-  width: 200px;
+  width: 100%;
   padding: 5px;
+  box-sizing: border-box;
 }

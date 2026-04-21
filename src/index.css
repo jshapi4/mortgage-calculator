@@ -1,13 +1,24 @@
 :root {
+  --bg: #fff;
+  --surface: #f2f2f2;
+  --text: #222;
+  --accent: rgb(225, 209, 225);
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  background: white;
+  background: var(--bg);
+  color: var(--text);
+}
 
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a1a;
+    --surface: #2e2e2e;
+    --accent: #3e213f;
+    --text: #eeeeee;
+  }
 }
 
 body {

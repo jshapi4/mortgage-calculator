@@ -26,7 +26,7 @@ function ResultsSummary({ results }) {
           </tr>
           {results.monthlyPMI > 0 && (
             <tr>
-              <td>PMI</td>
+              <td>PMI (fixed 0.5%)</td>
               <td>
                 {parseFloat(results.monthlyPMI).toLocaleString("en-US", {
                   style: "currency",
@@ -35,6 +35,15 @@ function ResultsSummary({ results }) {
               </td>
             </tr>
           )}
+          <tr>
+            <td>Total Monthly:</td>
+            <td>
+              {parseFloat(results.monthlyTotal).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </td>
+          </tr>
         </tbody>
       </table>
 
