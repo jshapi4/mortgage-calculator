@@ -31,7 +31,44 @@ body {
 
 #root {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.form-box {
+  background: var(--accent);
+  border-radius: 12px;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.monthly-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.row-item {
+  background: var(--surface);
+  padding: 1rem;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.row-item.total {
+  grid-column: 1 / -1;
+  background: var(--accent);
+  margin-top: 0.5rem;
+}
+
+.hero img {
+  width: 20%;
+  height: auto;
 }

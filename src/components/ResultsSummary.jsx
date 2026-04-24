@@ -1,84 +1,76 @@
 function ResultsSummary({ results }) {
-  if (!results)
-    return <p>Enter mortgage details and press calculate to see results</p>;
   return (
     <>
       <h2>Monthly Breakdown</h2>
-      <table>
-        <tbody>
-          <tr>
-            <td>Monthly Payment (P&I)</td>
-            <td>
-              {parseFloat(results.monthlyPayment).toLocaleString("en-US", {
+      <section className="monthly-grid">
+        <div className="row-item">
+          <span>Principal & Interest</span>
+          <strong>
+            {parseFloat(results.monthlyPandI).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </strong>
+        </div>
+        <div className="row-item">
+          <span>Property Taxes</span>
+          <strong>
+            {parseFloat(results.monthlyPropertyTax).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </strong>
+        </div>
+        {results.monthlyPMI > 0 && (
+          <div className="row-item">
+            <span>PMI ({(results.pmiRate * 100).toFixed(2)}%)</span>
+            <strong>
+              {parseFloat(results.monthlyPMI).toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
               })}
-            </td>
-          </tr>
-          <tr>
-            <td>Property Taxes</td>
-            <td>
-              {parseFloat(results.monthlyPropertyTax).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}
-            </td>
-          </tr>
-          {results.monthlyPMI > 0 && (
-            <tr>
-              <td>PMI (fixed 0.5%)</td>
-              <td>
-                {parseFloat(results.monthlyPMI).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}
-              </td>
-            </tr>
-          )}
-          <tr>
-            <td>Total Monthly:</td>
-            <td>
-              {parseFloat(results.monthlyTotal).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </strong>
+          </div>
+        )}
+        <div className="row-item total">
+          <span>Monthly Total:</span>
+          <strong>
+            {parseFloat(results.monthlyTotal).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </strong>
+        </div>
+      </section>
 
       <h2>Totals</h2>
-      <table>
-        <tbody>
-          <tr>
-            <td>Total Interest Paid</td>
-            <td>
-              {parseFloat(results.totalInterestPaid).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}
-            </td>
-          </tr>
-          <tr>
-            <td>Total Amount Paid</td>
-            <td>
-              {parseFloat(results.totalAmountPaid).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}
-            </td>
-          </tr>
-          <tr>
-            <td>Total Principal</td>
-            <td>
-              {parseFloat(results.principal).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="monthly-grid">
+        <div className="row-item">
+          <span>Total Interest Paid</span>
+          {parseFloat(results.totalInterestPaid).toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
+        </div>
+        <div className="row-item">
+          <span>Total Principal</span>
+          <strong>
+            {parseFloat(results.principal).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </strong>
+        </div>
+        <div className="row-item total">
+          <span>Total Amount Paid</span>
+          <strong>
+            {parseFloat(results.totalAmountPaid).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </strong>
+        </div>
+      </div>
     </>
   );
 }

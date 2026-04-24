@@ -1,11 +1,9 @@
 import houseLogo from "./assets/house.png";
 import { useState } from "react";
-import "./App.css";
-import "./MortgageForm.css";
 import MortgageForm from "./components/MortgageForm";
 import ResultsSummary from "./components/ResultsSummary";
 import {
-  calculateMonthlyPayment,
+  calculateMonthlyPandI,
   calculateMonthlyPropertyTax,
   calculateTotalInterestPaid,
   calculateTotalAmountPaid,
@@ -18,40 +16,39 @@ function App() {
     downPayment: 20,
     interestRate: 5.99,
     propertyTax: 1.25,
+    testItem: 123456.78,
   });
 
   const principal =
     formData.homePrice - (formData.homePrice * formData.downPayment) / 100;
-  const monthlyPayment = calculateMonthlyPayment(
-    principal,
-    formData.interestRate,
-  );
-  const totalInterestPaid = calculateTotalInterestPaid(
-    monthlyPayment,
-    principal,
-  );
-  const totalAmountPaid = calculateTotalAmountPaid(monthlyPayment);
+  const monthlyPandI = calculateMonthlyPandI(principal, formData.interestRate);
+  const totalInterestPaid = calculateTotalInterestPaid(monthlyPandI, principal);
+  const totalAmountPaid = calculateTotalAmountPaid(monthlyPandI);
 
   const monthlyPropertyTax = calculateMonthlyPropertyTax(
     formData.homePrice,
     formData.propertyTax,
   );
 
-  const monthlyPMI = calculatePMI(principal, formData.downPayment);
+  const { rate: pmiRate, amount: monthlyPMI } = calculatePMI(
+    principal,
+    formData.downPayment,
+  );
 
   const monthlyTotal =
     parseFloat(monthlyPropertyTax) +
     parseFloat(monthlyPMI) +
-    parseFloat(monthlyPayment);
+    parseFloat(monthlyPandI);
 
   const results = {
-    monthlyPayment,
+    monthlyPandI,
     monthlyPropertyTax,
     monthlyPMI,
     totalInterestPaid,
     totalAmountPaid,
     principal,
     monthlyTotal,
+    pmiRate,
   };
 
   const handleInputChange = (e) => {

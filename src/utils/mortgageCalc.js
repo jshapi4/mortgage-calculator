@@ -4,7 +4,7 @@ const loanYears = 30;
 const paymentsPerYear = 12;
 const numberOfPayments = loanYears * paymentsPerYear;
 
-function calculateMonthlyPayment(principal, annualInterestRate) {
+function calculateMonthlyPandI(principal, annualInterestRate) {
   const monthlyInterestRate = annualInterestRate / 100 / paymentsPerYear;
   const payment =
     (principal * monthlyInterestRate) /
@@ -27,23 +27,35 @@ function calculateTotalAmountPaid(monthlyPayment) {
   return (monthlyPayment * numberOfPayments).toFixed(2);
 }
 
-function calculatePMI(principal, downPaymentPercentage) {
+function getPmiRate(downPaymentPercentage) {
   if (downPaymentPercentage >= 20) {
     return 0;
+  } else if (downPaymentPercentage >= 15) {
+    return 0.0025;
+  } else if (downPaymentPercentage >= 10) {
+    return 0.0035;
+  } else if (downPaymentPercentage >= 5) {
+    return 0.0045;
+  } else {
+    return 0.006;
   }
-  //TODO: Implement PMI calculation based on the loan amount and down payment percentage
-  return (0.005 * principal) / 12;
+}
+
+function calculatePMI(principal, downPaymentPercentage) {
+  const rate = getPmiRate(downPaymentPercentage);
+  const amount = Number((rate * principal) / 12).toFixed(2);
+  return { rate, amount };
 }
 
 export {
-  calculateMonthlyPayment,
+  calculateMonthlyPandI,
   calculateMonthlyPropertyTax,
   calculateTotalInterestPaid,
   calculateTotalAmountPaid,
   calculatePMI,
 };
 
-var sample1 = calculateMonthlyPayment(200000, 5.99);
+var sample1 = calculateMonthlyPandI(200000, 5.99);
 console.log("Monthly Payment: ", sample1);
 var sample2 = calculateTotalInterestPaid(sample1, 200000);
 console.log("Total Interest Paid: ", sample2);
