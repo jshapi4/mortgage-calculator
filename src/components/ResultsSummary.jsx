@@ -55,7 +55,7 @@ function ResultsSummary({ results }) {
         <div className="row-item">
           <span>Total Principal</span>
           <strong>
-            {parseFloat(results.principal).toLocaleString("en-US", {
+            {parseFloat(results.totalPrincipal).toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
             })}

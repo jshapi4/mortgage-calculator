@@ -16,7 +16,6 @@ function App() {
     downPayment: 20,
     interestRate: 5.99,
     propertyTax: 1.25,
-    testItem: 123456.78,
   });
 
   const principal =
@@ -24,11 +23,11 @@ function App() {
   const monthlyPandI = calculateMonthlyPandI(principal, formData.interestRate);
   const totalInterestPaid = calculateTotalInterestPaid(monthlyPandI, principal);
   const totalAmountPaid = calculateTotalAmountPaid(monthlyPandI);
-
   const monthlyPropertyTax = calculateMonthlyPropertyTax(
     formData.homePrice,
     formData.propertyTax,
   );
+  const totalPrincipal = formData.homePrice;
 
   const { rate: pmiRate, amount: monthlyPMI } = calculatePMI(
     principal,
@@ -47,6 +46,7 @@ function App() {
     totalInterestPaid,
     totalAmountPaid,
     principal,
+    totalPrincipal,
     monthlyTotal,
     pmiRate,
   };
