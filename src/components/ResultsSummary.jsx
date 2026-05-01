@@ -2,7 +2,7 @@ function ResultsSummary({ results }) {
   return (
     <>
       <h2>Monthly Breakdown</h2>
-      <section className="monthly-grid">
+      <section className="monthly-grid form-box">
         <div className="row-item">
           <span>Principal & Interest</span>
           <strong>
@@ -44,10 +44,17 @@ function ResultsSummary({ results }) {
       </section>
 
       <h2>Totals</h2>
-      <div className="monthly-grid">
+      <section className="monthly-grid form-box">
         <div className="row-item">
           <span>Total Interest Paid</span>
           {parseFloat(results.totalInterestPaid).toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
+        </div>
+        <div className="row-item">
+          <span>Total Property Taxes Paid</span>
+          {parseFloat(results.totalPropertyTaxesPaid).toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}
@@ -70,7 +77,7 @@ function ResultsSummary({ results }) {
             })}
           </strong>
         </div>
-      </div>
+      </section>
     </>
   );
 }

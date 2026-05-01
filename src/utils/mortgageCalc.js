@@ -1,5 +1,3 @@
-// this will have the logic for the calculation of the mortgage payment, total interest paid, and total amount paid over the life of the loan
-
 const loanYears = 30;
 const paymentsPerYear = 12;
 const numberOfPayments = loanYears * paymentsPerYear;
@@ -17,14 +15,10 @@ function calculateMonthlyPropertyTax(homePrice, propertyTaxRate) {
   return monthlyPropertyTax.toFixed(2);
 }
 
-function calculateTotalInterestPaid(monthlyPayment, principal) {
-  const totalPaid = monthlyPayment * numberOfPayments;
+function calculateTotalInterestPaid(monthlyPandI, principal) {
+  const totalPaid = monthlyPandI * numberOfPayments;
   const totalInterest = totalPaid - principal;
   return totalInterest.toFixed(2);
-}
-
-function calculateTotalAmountPaid(monthlyPayment) {
-  return (monthlyPayment * numberOfPayments).toFixed(2);
 }
 
 function getPmiRate(downPaymentPercentage) {
@@ -51,15 +45,5 @@ export {
   calculateMonthlyPandI,
   calculateMonthlyPropertyTax,
   calculateTotalInterestPaid,
-  calculateTotalAmountPaid,
   calculatePMI,
 };
-
-var sample1 = calculateMonthlyPandI(200000, 5.99);
-console.log("Monthly Payment: ", sample1);
-var sample2 = calculateTotalInterestPaid(sample1, 200000);
-console.log("Total Interest Paid: ", sample2);
-var sample3 = calculateTotalAmountPaid(sample1);
-console.log("Total Amount Paid: ", sample3);
-var sample4 = calculateMonthlyPropertyTax(200000, 1.25);
-console.log("Monthly Property Tax: ", sample4);

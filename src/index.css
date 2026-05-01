@@ -5,8 +5,8 @@
   --accent: rgb(225, 209, 225);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
+  font-size: clamp(16px, 1.5vw, 24px);
   color-scheme: light dark;
   background: var(--bg);
   color: var(--text);
@@ -37,14 +37,29 @@ body {
 }
 
 .form-box {
-  background: var(--accent);
+  background: var(--surface);
   border-radius: 12px;
 }
 
 .form-box input {
-  width: 100%;
   padding: 5px;
-  box-sizing: border-box;
+}
+
+input {
+  font-size: inherit;
+  font: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid var(--text);
+}
+
+button {
+  font-size: inherit;
+  font: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 0.5rem;
+  border: 1px solid var(--text);
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .monthly-grid {
@@ -62,6 +77,30 @@ body {
   align-items: center;
 }
 
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.button-group button.active {
+  background: var(--accent);
+  border-color: var(--text);
+  font-weight: bold;
+}
+
+.custom-input-group {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+}
+
+.custom-input-group input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .row-item.total {
   grid-column: 1 / -1;
   background: var(--accent);
@@ -69,6 +108,6 @@ body {
 }
 
 .hero img {
-  width: 20%;
+  width: 15%;
   height: auto;
 }
