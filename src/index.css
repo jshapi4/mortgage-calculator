@@ -5,7 +5,7 @@
   --accent: rgb(225, 209, 225);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(16px, 1.5vw, 24px);
   color-scheme: light dark;
   background: var(--bg);
@@ -47,6 +47,7 @@ body {
 
 input {
   font-size: inherit;
+  font-weight: 300;
   font: system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: transparent;
   border-radius: 8px;
@@ -55,11 +56,23 @@ input {
 
 button {
   font-size: inherit;
-  font: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font: system-ui, Helvetica, Arial, sans-serif;
   padding: 0.5rem;
   border: 1px solid var(--text);
   border-radius: 8px;
   cursor: pointer;
+}
+
+button.totalsButton {
+  margin-top: 1rem;
+  background: var(--accent);
+  color: var(--text);
+  font-weight: bold;
+}
+
+.title {
+  text-align: center;
+  padding-top: 0.5rem;
 }
 
 .monthly-grid {
@@ -75,6 +88,10 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+}
+
+.row-item strong {
+  font-weight: inherit;
 }
 
 .button-group {
