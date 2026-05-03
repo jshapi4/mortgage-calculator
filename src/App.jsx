@@ -17,6 +17,7 @@ function App() {
     propertyTax: 1.25,
   });
   const [isCustomDownPayment, setIsCustomDownPayment] = useState(false);
+  const [showTotals, setShowTotals] = useState(false);
 
   const principal =
     formData.homePrice - (formData.homePrice * formData.downPayment) / 100;
@@ -75,7 +76,11 @@ function App() {
           isCustomDownPayment={isCustomDownPayment}
           setIsCustomDownPayment={setIsCustomDownPayment}
         />
-        <ResultsSummary results={results} />
+        <ResultsSummary
+          results={results}
+          showTotals={showTotals}
+          setShowTotals={setShowTotals}
+        />
       </section>
     </>
   );
