@@ -41,9 +41,17 @@ function calculatePMI(principal, downPaymentPercentage) {
   return { rate, amount };
 }
 
+const formatCurrency = (value) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(value);
+};
+
 export {
   calculateMonthlyPandI,
   calculateMonthlyPropertyTax,
   calculateTotalInterestPaid,
   calculatePMI,
+  formatCurrency,
 };
