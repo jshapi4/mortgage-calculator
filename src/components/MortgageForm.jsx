@@ -1,16 +1,11 @@
+import { formatCurrency } from "../utils/mortgageCalc";
+
 function MortgageForm({
   formData,
   onInputChange,
   isCustomDownPayment,
   setIsCustomDownPayment,
 }) {
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(value);
-  };
-
   const handlePresetClick = (e) => {
     onInputChange(e);
     setIsCustomDownPayment(false);
@@ -20,7 +15,6 @@ function MortgageForm({
 
   return (
     <>
-      <h2>Mortgage Form</h2>
       <div className="form-box">
         <div className="row-item">
           <label htmlFor="homePrice">
@@ -35,7 +29,16 @@ function MortgageForm({
             step="5000"
             value={formData.homePrice}
             onChange={onInputChange}
+            list="price-ticks"
           />
+          <datalist id="price-ticks">
+            {[
+              100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000,
+              900000, 1000000,
+            ].map((tick) => (
+              <option key={tick} value={tick} />
+            ))}
+          </datalist>
         </div>
         <div className="row-item">
           <div>
